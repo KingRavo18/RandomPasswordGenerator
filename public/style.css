@@ -1,0 +1,62 @@
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.random-password-generator-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 30px 20px;
+    background-color: pink;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgb(180, 180, 180);
+
+    & h1{
+        font-size: 170%;
+    }
+
+    & .password-container{
+        background-color: pink;
+        padding: 10px 1px 10px 10px;
+        font-size: 170%;
+        border-radius: 5px;
+        border: 2px solid black;
+        width: 550px;
+        color: gray;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & button{
+            background-color: pink;
+            border: none;
+            cursor: pointer;
+            color: gray;
+            font-size: 150%;
+
+            &:hover{
+                color:black;
+            }
+        }
+    }
+
+    & #generate-Btn{
+        font-family: 'Courier New', Courier, monospace;
+        background-color: black;
+        color: white;
+        margin-top: 15px;
+        font-size: 150%;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 7px 0;
+        width: 30%;
+
+        &:hover{
+            background-color: green;
+        }
+    }
+}
