@@ -48,7 +48,6 @@ function PasswordGenerator(){
         
     }
 
-
     return {generate, copyPassword};
 }   
 
