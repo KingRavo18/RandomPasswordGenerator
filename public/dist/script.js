@@ -3,7 +3,7 @@ function PasswordGenerator() {
     const numbers = "0123456789";
     const uncapitalisedLetters = "abcdefghijklmnopqrstuvwxyz";
     const capitalisedLetters = uncapitalisedLetters.toUpperCase();
-    const specialSymbols = "!@#$%^&*-=_+\|?><`~";
+    const specialSymbols = "!@#$%^&*-=_+|?><`~";
     const allSymbols = numbers + uncapitalisedLetters + capitalisedLetters + specialSymbols;
     const passwordLength = 15;
     let generatedPassword;
@@ -24,11 +24,25 @@ function PasswordGenerator() {
     }
     function copyPassword() {
         if (!generatedPassword) {
-            return console.log("Please generate a password first!");
+            return customResponseMessage("error-message", "Please generate a password first!");
         }
         navigator.clipboard.writeText(generatedPassword);
-        //Create a succesful password copy message
-        //Create a failed password copy message
+        customResponseMessage("success-message", `${generatedPassword} has been copied!`);
+    }
+    function customResponseMessage(messageType, messageText) {
+        const message = document.createElement("div");
+        message.classList.add("message");
+        message.classList.add(messageType);
+        message.classList.add("message-appear-animation");
+        message.textContent = messageText;
+        document.getElementById("website-main").appendChild(message);
+        setTimeout(() => {
+            message.classList.remove("message-appear-animation");
+            message.classList.add("message-disappear-animation");
+            setTimeout(() => {
+                document.getElementById("website-main").removeChild(message);
+            }, 900);
+        }, 2000);
     }
     return { generate, copyPassword };
 }

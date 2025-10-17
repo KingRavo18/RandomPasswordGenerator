@@ -60,3 +60,38 @@ body{
         }
     }
 }
+
+.message{
+    border-radius: 10px;
+    padding: 10px 20px;
+    position: fixed;
+    right: 20px;
+    font-size: 130%;
+    bottom: 20px;
+}
+.error-message{
+    border: 2px solid red;
+    background-color: rgb(255, 186, 197);
+}
+.success-message{
+    border: 2px solid green;
+    background-color: rgb(154, 250, 154);
+}
+
+.message-appear-animation{
+    animation-duration: 1000ms;
+    animation-name: messageAppear;
+}
+@keyframes messageAppear {
+    from{right: -500px}
+    to{right: 20px;}
+}
+
+.message-disappear-animation{
+    animation-duration: 1000ms;
+    animation-name: messageDisappear;
+}
+@keyframes messageDisappear {
+    from{right: 20px}
+    to{right: -500px;}
+}
