@@ -1,35 +1,31 @@
 body{
-    display: grid;
-    place-items: center;
     height: 100vh;
     margin: 0;
+    display: grid;
+    place-items: center;
     font-family: 'Courier New', Courier, monospace;
 }
 
 .random-password-generator-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    padding: 30px 20px;
     background-color: pink;
+    padding: 30px 20px;
     border-radius: 10px;
     box-shadow: 1px 1px 10px rgb(180, 180, 180);
+    animation: 400ms ease 0s container-appearing-anim;
 
-    & h1{
-        font-size: 170%;
-    }
+    & h1{ font-size: 170%; }
 
     & .password-container{
         background-color: pink;
-        padding: 10px 1px 10px 10px;
-        font-size: 170%;
-        border-radius: 5px;
-        border: 2px solid black;
         width: 550px;
-        color: gray;
+        padding: 10px 1px 10px 10px;
+        border: 2px solid black;
+        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-size: 170%;
+        color: gray;
 
         & button{
             background-color: pink;
@@ -38,60 +34,59 @@ body{
             color: gray;
             font-size: 150%;
 
-            &:hover{
-                color:black;
-            }
+            &:hover{ color:black; }
         }
     }
 
     & #generate-Btn{
-        font-family: 'Courier New', Courier, monospace;
         background-color: black;
-        color: white;
+        width: 30%;
+        padding: 7px 0;
         margin-top: 15px;
-        font-size: 150%;
         border-radius: 5px;
         cursor: pointer;
-        padding: 7px 0;
-        width: 30%;
+        color: white;
+        font: 150% 'Courier New', Courier, monospace;
 
-        &:hover{
-            background-color: green;
-        }
+        &:hover{ background-color: green; }
+    }
+}
+@keyframes container-appearing-anim{
+    from{
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
 .message{
-    border-radius: 10px;
     padding: 10px 20px;
     position: fixed;
     right: 20px;
-    font-size: 130%;
     bottom: 20px;
+    border-radius: 10px;
+    font-size: 130%;
 }
 .error-message{
-    border: 2px solid red;
     background-color: rgb(255, 186, 197);
+    border: 2px solid red;
 }
 .success-message{
-    border: 2px solid green;
     background-color: rgb(154, 250, 154);
+    border: 2px solid green;
 }
 
-.message-appear-animation{
-    animation-duration: 1000ms;
-    animation-name: messageAppear;
-}
-@keyframes messageAppear {
-    from{right: -500px}
-    to{right: 20px;}
+.message-appear-animation{ animation: 400ms ease 0s messageAppear; }
+@keyframes messageAppear{
+    from{ right: -500px }
+    to{ right: 20px; }
 }
 
-.message-disappear-animation{
-    animation-duration: 1000ms;
-    animation-name: messageDisappear;
-}
-@keyframes messageDisappear {
-    from{right: 20px}
-    to{right: -500px;}
+.message-disappear-animation{ animation: 400ms ease 0s messageDisappear; }
+@keyframes messageDisappear{
+    from{ right: 20px }
+    to{ right: -500px; }
 }

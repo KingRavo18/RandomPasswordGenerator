@@ -41,7 +41,7 @@ function PasswordGenerator() {
             message.classList.add("message-disappear-animation");
             setTimeout(() => {
                 document.getElementById("website-main").removeChild(message);
-            }, 900);
+            }, 300);
         }, 2000);
     }
     return { generate, copyPassword };

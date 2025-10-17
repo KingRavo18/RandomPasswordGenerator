@@ -43,7 +43,7 @@ function PasswordGenerator(){
                 message.classList.add("message-disappear-animation");
                 setTimeout(() => {
                     (document.getElementById("website-main") as HTMLElement).removeChild(message);  
-                }, 900);
+                }, 300);
         }, 2000);
         
     }
