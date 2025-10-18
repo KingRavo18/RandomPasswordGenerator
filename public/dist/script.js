@@ -7,7 +7,7 @@ function PasswordGenerator() {
     const allSymbols = numbers + uncapitalisedLetters + capitalisedLetters + specialSymbols;
     const passwordLength = 15;
     let generatedPassword;
-    function generate() {
+    function generatePassword() {
         const { chosenSymbols, passwordSymbols } = resetValues();
         for (let i = 0; i < passwordLength; i++) {
             chosenSymbols.push(String(passwordSymbols[Math.floor(Math.random() * passwordSymbols.length)]));
@@ -31,23 +31,24 @@ function PasswordGenerator() {
     }
     function customResponseMessage(messageType, messageText) {
         const message = document.createElement("div");
+        const websiteMain = document.getElementById("website-main");
         message.classList.add("message");
         message.classList.add(messageType);
         message.classList.add("message-appear-animation");
         message.textContent = messageText;
-        document.getElementById("website-main").appendChild(message);
+        websiteMain.appendChild(message);
         setTimeout(() => {
             message.classList.remove("message-appear-animation");
             message.classList.add("message-disappear-animation");
             setTimeout(() => {
-                document.getElementById("website-main").removeChild(message);
+                websiteMain.removeChild(message);
             }, 300);
         }, 2000);
     }
-    return { generate, copyPassword };
+    return { generatePassword, copyPassword };
 }
-const { generate, copyPassword } = PasswordGenerator();
-document.getElementById("generate-Btn").onclick = () => generate();
+const { generatePassword, copyPassword } = PasswordGenerator();
+document.getElementById("generate-Btn").onclick = () => generatePassword();
 document.getElementById("copy-Btn").onclick = () => copyPassword();
 export {};
 //# sourceMappingURL=script.js.map
