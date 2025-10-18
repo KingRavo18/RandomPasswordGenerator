@@ -24,10 +24,12 @@ function PasswordGenerator() {
     }
     function copyPassword() {
         if (!generatedPassword) {
-            return customResponseMessage("error-message", "Please generate a password first!");
+            customResponseMessage("error-message", "Please generate a password first!");
         }
-        navigator.clipboard.writeText(generatedPassword);
-        customResponseMessage("success-message", `${generatedPassword} has been copied!`);
+        else {
+            navigator.clipboard.writeText(generatedPassword);
+            customResponseMessage("success-message", `${generatedPassword} has been copied!`);
+        }
     }
     function customResponseMessage(messageType, messageText) {
         const message = document.createElement("div");

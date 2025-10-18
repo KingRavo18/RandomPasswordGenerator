@@ -8,7 +8,7 @@ function PasswordGenerator(){
     const passwordLength = 15;
     let generatedPassword: string;
 
-    function generatePassword(){  
+    function generatePassword(): void{  
         const {chosenSymbols, passwordSymbols} = resetValues();
         for(let i = 0; i < passwordLength; i++){
             chosenSymbols.push(String(passwordSymbols[Math.floor(Math.random() * passwordSymbols.length)]));
@@ -24,14 +24,16 @@ function PasswordGenerator(){
         return {chosenSymbols, passwordSymbols};
     }
 
-    function copyPassword(){
+    function copyPassword(): void{
         if(!generatedPassword){
-            return customResponseMessage("error-message", "Please generate a password first!");
+            customResponseMessage("error-message", "Please generate a password first!");
         }
-        navigator.clipboard.writeText(generatedPassword);
-        customResponseMessage("success-message", `${generatedPassword} has been copied!`);
+        else{
+            navigator.clipboard.writeText(generatedPassword);
+            customResponseMessage("success-message", `${generatedPassword} has been copied!`);
+        }
     }
-    function customResponseMessage(messageType: string, messageText: string){
+    function customResponseMessage(messageType: string, messageText: string): void{
         const message = document.createElement("div");
         const websiteMain = document.getElementById("website-main") as HTMLElement;
         message.classList.add("message");
