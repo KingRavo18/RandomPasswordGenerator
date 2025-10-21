@@ -1,23 +1,35 @@
-function PasswordGenerator() {
-    const passwordDisplay = document.getElementById("password");
-    const numbers = "0123456789";
-    const uncapitalisedLetters = "abcdefghijklmnopqrstuvwxyz";
-    const capitalisedLetters = uncapitalisedLetters.toUpperCase();
-    const specialSymbols = "!@#$%^&*-=_+|?><`~";
-    const allSymbols = numbers + uncapitalisedLetters + capitalisedLetters + specialSymbols;
+function passwordGenerator() {
+    const htmlElement = {
+        passwordDisplay: document.getElementById("password"),
+        websiteMain: document.getElementById("website-main")
+    };
+    const passwordCharacters = {
+        numbers: "0123456789",
+        uncapitalisedLetters: "abcdefghijklmnopqrstuvwxyz",
+        capitalisedLetters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        specialSymbols: "!@#$%^&*-=_+|?><`~"
+    };
+    const allSymbols = passwordCharacters.numbers +
+        passwordCharacters.uncapitalisedLetters +
+        passwordCharacters.capitalisedLetters +
+        passwordCharacters.specialSymbols;
     const passwordLength = 15;
-    let generatedPassword;
+    let generatedPassword = "";
     function generatePassword() {
         const { chosenSymbols, passwordSymbols } = resetValues();
-        for (let i = 0; i < passwordLength; i++) {
+        for (const value of Object.values(passwordCharacters)) {
+            const characterSet = value.split("");
+            chosenSymbols.push(String(characterSet[Math.floor(Math.random() * characterSet.length)]));
+        }
+        for (let i = 0; i < passwordLength - 4; i++) {
             chosenSymbols.push(String(passwordSymbols[Math.floor(Math.random() * passwordSymbols.length)]));
         }
+        chosenSymbols.sort(() => Math.random() - 0.5);
         generatedPassword = chosenSymbols.join("");
-        passwordDisplay.style.color = "black";
-        passwordDisplay.textContent = generatedPassword;
+        htmlElement.passwordDisplay.style.color = "black";
+        htmlElement.passwordDisplay.textContent = generatedPassword;
     }
     function resetValues() {
-        passwordDisplay.textContent = "";
         const chosenSymbols = [];
         const passwordSymbols = allSymbols.split("");
         return { chosenSymbols, passwordSymbols };
@@ -33,23 +45,22 @@ function PasswordGenerator() {
     }
     function customResponseMessage(messageType, messageText) {
         const message = document.createElement("div");
-        const websiteMain = document.getElementById("website-main");
         message.classList.add("message");
         message.classList.add(messageType);
         message.classList.add("message-appear-animation");
         message.textContent = messageText;
-        websiteMain.appendChild(message);
+        htmlElement.websiteMain.appendChild(message);
         setTimeout(() => {
             message.classList.remove("message-appear-animation");
             message.classList.add("message-disappear-animation");
             setTimeout(() => {
-                websiteMain.removeChild(message);
+                htmlElement.websiteMain.removeChild(message);
             }, 300);
         }, 2000);
     }
     return { generatePassword, copyPassword };
 }
-const { generatePassword, copyPassword } = PasswordGenerator();
+const { generatePassword, copyPassword } = passwordGenerator();
 document.getElementById("generate-Btn").onclick = () => generatePassword();
 document.getElementById("copy-Btn").onclick = () => copyPassword();
 export {};
